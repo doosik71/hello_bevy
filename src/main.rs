@@ -38,7 +38,18 @@ impl Plugin for HelloPlugin {
 
 fn main() {
     App::new()
-        .add_plugins(DefaultPlugins)
+        .add_plugins(DefaultPlugins.set(WindowPlugin {
+            window: WindowDescriptor {
+                width: 800.0,
+                height: 600.0,
+                position: WindowPosition::Centered,
+                title: "Bevy Example".to_string(),
+                resizable: false,
+                decorations: false,
+                cursor_grab_mode: bevy::window::CursorGrabMode::Confined,
+                ..default()},
+            ..default()
+        }))
         .add_plugin(HelloPlugin)
         .run();
 }
